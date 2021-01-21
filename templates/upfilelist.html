@@ -1,0 +1,64 @@
+{% extends 'Padre.html' %}
+
+{% block title %}
+    Upfile
+{% endblock %}
+
+{% block CSS %}
+{% endblock %}
+{% block archivo %}
+{% endblock archivo %}
+
+{% block Container %}
+<div class = "page-content-wrapper">
+    <div class = "page-content" style="min-height:534px">
+        <div class = "portlet light">
+            <div class = "portlet-body">
+                <div class "row">
+                    <div class="table-responsive">
+                                <p>
+                                <a href = {% url 'analisis:file' %}  class = "btn btn-primary" target = "_blank"> subir
+                                </a>
+                                </p>
+                                <table id="gallery" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                        <th>Files</th>
+                                        <th>Hora de entrada</th>
+                                        <th>Descargar</th>
+                                        <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for csv in csvs %}
+                                        <tr>
+                                            <td>{{ csv.file }}</td>
+                                            <td>{{ csv.cargado_en }}</td>
+                                            <td>
+                                                <a  href = "{{ csv.file.url }}" class = "btn btn-primary btn-sm" target = "_blank">
+                                                Descargar
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <form method = 'post' acttion = "{% url 'analisis:delete' csv.pk %}">
+                                                    {% csrf_token %}
+                                                    <button type = "submit" class = "btn btn-danger btn-sm"> Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock Container %}
+
+
+

@@ -1,0 +1,104 @@
+{% extends 'Padre.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Upfile
+{% endblock %}
+
+{% block CSS %}
+{% endblock %}
+{% block archivo %}
+{% endblock archivo %}
+
+{% block Container %}
+<div class = "page-content-wrapper">
+    <div class = "page-content" style="min-height:534px">
+        <div class = "portlet light">
+            <div class = "portlet-body">
+                <div class "row">
+                    <div class="col-md-12">
+                        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <form class="md-form" method = 'post' enctype="multipart/form-data">
+                                    <div class="file-field big">
+                                        {% csrf_token %}
+                                        {{ form|crispy }}
+                                        <button type = "submit" class = "btn btn-primary">Subir
+                                            </button>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% comment %} <div class="page-content">
+        <div class "row">
+            <div class="col-md-12">
+                <form id="fileupload"  method="POST" enctype="multipart/form-data" class="">
+                    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                    <div class="row fileupload-buttonbar">
+                        <div class="col-lg-7">
+                            <!-- The fileinput-button span is used to style the file input field as button -->
+                            <button type="button" class="btn btn-primary js-upload-photos">
+                                <span class="glyphicon glyphicon-cloud-upload"></span> Upload files
+                                </button>
+
+                                {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #}
+                                <input id="fileupload" type="file" name="file" multiple
+                                    style="display: none;"
+                                    data-url="{% url 'analisis:file' %}"
+                                    data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+
+                                {# 3. TABLE TO DISPLAY THE UPLOADED PHOTOS #}
+                                <table id="gallery" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                    <th>Files</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for photo in documents %}
+                                    <tr>
+                                        <td><a href="{{ photo.file.url }}">{{ photo.file.name }}</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                </table>
+                        </div>
+                        <!-- The global progress information -->
+                        <div class="col-lg-5 fileupload-progress fade">
+                            <!-- The global progress bar -->
+                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar progress-bar-success" style="width:0%;">
+                                </div>
+                            </div>
+                            <!-- The extended global progress information -->
+                            <div class="progress-extended">
+                                    &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <!-- The table listing the files available for upload/download -->
+                    <table role="presentation" class="table table-striped clearfix">
+                    <tbody class="files">
+                    </tbody>
+                    </table>
+                </form>
+                
+                
+                
+
+            </div>
+        </div>
+    </div>        {% endcomment %}
+{% endblock Container %}
+
+
+

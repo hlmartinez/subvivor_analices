@@ -1,0 +1,33 @@
+{% extends 'Padre.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block CSS %}
+{% endblock %}
+{% block archivo %}
+    <div class="btn-group-red btn-group">
+		<a type="button"  class="btn btn-sm dropdown-toggle" href = {% url 'analisis:file' %} >
+			<i class="fa fa-plus" ></i>
+		</a>
+	</div>
+{% endblock archivo %}
+
+{% block Container %}
+	    	<div class="page-content">
+			    <div class "row">
+				    <div class="col-md-6">
+					
+				    </div>
+					<div class="col-md-6">
+					</div>
+				</div>
+			</div>
+{% endblock Container %}
+{% block javaScripts %}
+{% endblock javaScripts %}
+{% comment %} {% block MoreScripts %}{% endblock  MoreScripts%} {% endcomment %}
+
+
+
